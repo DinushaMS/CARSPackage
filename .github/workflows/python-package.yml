@@ -7,6 +7,11 @@ jobs:
     python-build-n-publish:
         name: Build and publish Python distribution
         runs-on: ubuntu-latest
+        # Specifying a GitHub environment is optional, but strongly encouraged
+        environment: pypi
+        permissions:
+          # IMPORTANT: this permission is mandatory for Trusted Publishing
+          id-token: write
         steps:
             - uses: actions/checkout@main
 
@@ -32,6 +37,6 @@ jobs:
 
             - name: Publish distribution to PyPI
               uses: pypa/gh-action-pypi-publish@master
-              with:
-                password: ${{ secrets.test_pypi_password }}
-                repository_url: https://upload.pypi.org/legacy/
+              #with:
+              #  password: [DOLLARSIGN]{{ secrets.test_pypi_password }}
+              #  repository_url: https://upload.pypi.org/legacy/
